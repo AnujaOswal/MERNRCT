@@ -1,0 +1,107 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.addNew {
+  background-color: rgba(250, 250, 250, 0.856);
+  width: 250px;
+  height: 285px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%),
+    0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+  margin: 50px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.add i {
+  color: rgb(52, 53, 53);
+  font-size: 80px;
+}
+
+.addNew h3 {
+  color: rgb(52, 53, 53);
+}
+
+.addNew:hover {
+  opacity: 1;
+}
+
+.back-btn {
+  border: none;
+  margin: 10px 0;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  background-image: linear-gradient(315deg, #d98324 0%, #f0c495 74%);
+  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%),
+    0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+  font-weight: bold;
+  font-size: 18px;
+  color: #7e4c16;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.back-btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(120deg, #d98324 0%, #f0c495 74%);
+  z-index: -1;
+  transition: opacity 0.3s linear;
+  opacity: 0;
+}
+
+.back-btn:hover::before {
+  opacity: 1;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
