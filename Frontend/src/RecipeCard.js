@@ -48,7 +48,7 @@ function RecipeCard({title,image,ingredients,deletekey,_id}) {
 
   const deleteHandler= (_id) =>{
     deletekey(_id)
-    console.log(_id)
+    console.log("_id",_id)
   };
 
   return (

@@ -18,21 +18,14 @@ function RecipeComponent(){
   useEffect(() => {  
     // Recipe data from the MOCK API
   fetchData() 
-  }, []);
+  }, [recipes]);
    const [searchfood,setSearchfood]=useState("")
    //console.log(recipes)
   const [deletefood,setDeleteFood]=useState("")
-const setdeletetitle=(_id)=>{
-console.log("_id",_id)
-  setRecipes(
-    recipes.filter((arr)=>{
-      if(!arr._id.includes(_id))
-      {
-        return arr;
-      }
-    })
-  )
-  
+
+const setdeletetitle = async (_id) => {
+  console.log(_id)
+  await axios.delete(`/recipes/${_id}`)
 }
 console.log(recipes)
   return(

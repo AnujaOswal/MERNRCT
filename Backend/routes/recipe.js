@@ -37,24 +37,25 @@ router
 
 
 .delete( async (request, respone) => {
-  // const { id } = request.params;
+  //const { id } = request.params;
   
-  console.log(id);
-  try {
-    const recipe = await Recipes.findById({'_id': ObjectId(request.params.id)});  
-    await recipe.remove();
-    // console.log();
-    respone.json({
-      title: recipe.title,
-      id: recipe.id,
-      _id:recipe._id,
+  //console.log(id);
+const recipe = await Recipes.findById(request.params.id)
+    console.log('test', recipe)
+    if (recipe) {
+      await recipe.remove()
+      respone.json({
+        title: recipe.title,
+        id: recipe.id,
+       _id:recipe._id,
       message: "Recipe Deleted successfully" });
 
-  } catch (err) {
-    respone.status(500);
-    respone.send("recipe is missing");
-  }
-})
+    
+    } else {
+      respone.status(404)
+      respone.send('recipe is missing')
+    }
+  })
 .patch(async (request, respone) => {
   const { id } = request.params;
   const { title, foodimage ,ingredients} = request.body;

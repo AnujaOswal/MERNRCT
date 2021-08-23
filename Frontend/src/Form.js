@@ -35,7 +35,7 @@ export default function Form({recipe}) {
   );
 }
 //form
-function AddUser({ refreshUsers }) {
+function AddUser({ refreshUsers ,history}) {
   const validationSchema = Yup.object().shape({
     title: Yup.string()
       .required("Re-Enter Your Food item")
@@ -60,6 +60,7 @@ function AddUser({ refreshUsers }) {
   const onSubmit = (data) => {
     console.log(data);
     addUser(data);
+    history.push("/recipe")
   };
 
   return (
