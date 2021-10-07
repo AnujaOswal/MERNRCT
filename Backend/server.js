@@ -5,15 +5,19 @@ import { userRouter } from "./routes/user.js";
 import dotenv from 'dotenv'
 
 import connectDB from './config/db.js'
+dotenv.config({ path : "./config/.env" });
 
-
-dotenv.config()
 connectDB()
+
 const app = express()
 const PORT = process.env.PORT || 5000
 
 app.use(express.json())
 
+// if(process.env.NODE_ENV === 'development')
+// {
+//     app.use(morgan('dev'));
+// }
 
 app.use("/users", userRouter);
 app.use("/recipes", router);
@@ -39,39 +43,3 @@ app.listen(
   )
 )
 
-
-
-//const app = express();
-//const PORT = 5000;
-///const PORT = process.env.PORT || 5000;
-
-// Opened Connection to DB, movieData - db name
-
-// const url = process.env.MONGODB_URI || "mongodb://localhost/RecipeData";
-
-// mongoose.connect(url, { useNewUrlParser: true });
-// const con = mongoose.connection;
-// con.on("open", () => console.log("MongoDB is connected"));
-
-// // middleware
-// app.use(express.json());
-
-// app.get("/", (request, respone) => {
-//   respone.send("Welcome to node app!!!! Hi Guys");
-// });
-
-// app.use("/users", userRouter);
-
-// app.use("/recipes", router);
-
-// app.listen(PORT, () => console.log("The server is started in " + PORT));
-
-// npm init - It will package json
-// npm install express
-// npm install --save-dev nodemon
-// npm install mongoose
-
-// ORM - Object–relational mapping
-
-// Create react app - new app
-// use this user data

@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory } from "react-router-dom";
 
 export default function Form({recipe}) {
   const [users, setUsers] = useState([]);
   const [newUser, setNewUsers] = useState({});
+  
   function getUsers() {
     fetch("/recipes")
       .then((res) => res.json())
@@ -19,7 +21,9 @@ export default function Form({recipe}) {
 
   return (
     <div>
+      
       <AddUser refreshUsers={getUsers} />
+      
       {/* {users.map((user) => (
         <div key={user.id}>
           <p>{user.title}</p>
@@ -35,7 +39,9 @@ export default function Form({recipe}) {
   );
 }
 //form
-function AddUser({ refreshUsers ,history}) {
+
+function AddUser({ refreshUsers}) {
+  let history = useHistory();
   const validationSchema = Yup.object().shape({
     title: Yup.string()
       .required("Re-Enter Your Food item")
@@ -60,7 +66,9 @@ function AddUser({ refreshUsers ,history}) {
   const onSubmit = (data) => {
     console.log(data);
     addUser(data);
-    history.push("/recipe")
+    history.push({
+      pathname : '/recipe'
+    })
   };
 
   return (

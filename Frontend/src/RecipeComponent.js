@@ -11,7 +11,7 @@ function RecipeComponent(){
   const fetchData = async()=>{
 	
     const { data } = await axios.get('/recipes')
-    console.log(data)
+    //console.log(data)
     setRecipes(data)
 	}
 
@@ -27,7 +27,7 @@ const setdeletetitle = async (_id) => {
   console.log(_id)
   await axios.delete(`/recipes/${_id}`)
 }
-console.log(recipes)
+//console.log(recipes)
   return(
           
   <>  
@@ -71,7 +71,7 @@ console.log(recipes)
         </Link>
       
      {/*container */}
-
+  
    </>
   )
 }
