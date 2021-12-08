@@ -33,6 +33,7 @@ const setdeletetitle = async (_id) => {
   <>  
       <Searchbox setSearchfood={setSearchfood} />
     
+      <div className="row">
       {recipes
          .filter((rec)=>{
            if(searchfood==="")
@@ -65,7 +66,7 @@ const setdeletetitle = async (_id) => {
 
         
             })}
-
+        </div>
         <Link to={`/addRecipe`}>
           <AddRecipeComponent />
         </Link>
