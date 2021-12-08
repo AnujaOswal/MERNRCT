@@ -54,8 +54,7 @@ const Header = () => {
             <Typography variant="h6" color="inherit">
               Recipe Corner
             </Typography>
-            
-   
+
              <ul className="links">
             <li>
               <Link to="/" style={{color:"black"}}>Home</Link>
@@ -63,6 +62,13 @@ const Header = () => {
             <li>
               <Link to="/recipe" style={{color:"black"}}>Recipes</Link>
             </li>
+            <li>
+              <Link to="/login" style={{color:"black"}}>Login</Link>
+            </li>
+            <li>
+              <Link to="/register" style={{color:"black"}}>Register</Link>
+            </li>
+            
             {/* <Route
                   render={({ history }) => (
                     <>

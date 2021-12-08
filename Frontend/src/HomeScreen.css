@@ -6,17 +6,19 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
+  border-radius: 5px;
 }
 .description {
   line-height: 2;
   max-width: 45em;
   margin-bottom: 0.8rem;
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 .hero span {
   color: #379683;
 }
 .content {
+  text-align: right;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +28,7 @@
   font-size: 3.5vw;
 }
 .hero img {
-  width: 50vw;
+  width: 55vw;
 }
 
 .btn-order {
@@ -49,7 +51,11 @@
   .hero {
     flex-direction: column;
   }
+  .hero img {
+    width: 73vw;
+  }
   .content {
+    text-align: center;
     margin-top: 2rem;
   }
   .btn-order {

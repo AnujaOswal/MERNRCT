@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
 import './App.css';
 
 function Searchbox({ setSearchfood }) {
@@ -12,9 +11,10 @@ function Searchbox({ setSearchfood }) {
           type="text"
           placeholder="Search your fav food recipe"
           className="searchTerm" 
+          style={{margin:"20px" ,padding:"10px"}}
           onChange={(event) => setSearchfood(event.target.value)}
         ></input>
-        <i class="fa fa-search"></i>
+        <i class="fa fa-search" style={{fontSize:"large"}}></i>
       </div>
     </div>
     </div>

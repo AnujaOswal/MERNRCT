@@ -6,6 +6,7 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 ul {
   list-style: none;
 }
@@ -15,13 +16,17 @@ a {
 }
 
 #nav ul {
-  padding-left: 300px;
+  flex: 50%;
+  list-style: none;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 #nav li {
   color: blueviolet;
   padding: 10px;
 }
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -37,7 +42,6 @@ a {
   border-bottom: 2px solid transparent;
 }
 .links li:hover {
-  font-size: large;
   border-color: #374596;
 }
 .btn {
