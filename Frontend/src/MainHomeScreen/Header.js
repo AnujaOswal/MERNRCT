@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
-import { fade,makeStyles } from '@material-ui/core/styles';
+import {makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
+import { Link } from "react-router-dom";  
+import AuthApi from "../utils/AuthApi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +40,14 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 const Header = () => {
+  const authApi = React.useContext(AuthApi);
+  const handleLogout = () => {
+    authApi.setAuth(false);
+  };
   const classes = useStyles();
   return (
     <header>
       <nav id="nav">
-        
         <div className={classes.root}>
         <AppBar position="static" className={classes.header}>
           <Toolbar variant="dense">
@@ -57,16 +60,13 @@ const Header = () => {
 
              <ul className="links">
             <li>
-              <Link to="/" style={{color:"black"}}>Home</Link>
+              <Link to="/home" style={{color:"black"}}>Home</Link>
             </li>
             <li>
               <Link to="/recipe" style={{color:"black"}}>Recipes</Link>
             </li>
             <li>
-              <Link to="/login" style={{color:"black"}}>Login</Link>
-            </li>
-            <li>
-              <Link to="/register" style={{color:"black"}}>Register</Link>
+              <Link to="/signin" style={{color:"black"}} onClick={handleLogout}> Logout </Link>
             </li>
             
             {/* <Route

@@ -1,12 +1,12 @@
 import React from "react";
 //import { Link} from "react-router-dom";
-
-import heroimg from "./images/homechef.svg";
+import heroimg from "../images/homechef.svg";
 import "./HomeScreen.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
 const HomeScreen = () => {
   return (
-    <div className="hero">
+    <>
+    <div className="hero" >
       <img src={heroimg} alt="breakfast" />    
       <div className="content">
         <h1>
@@ -25,6 +25,7 @@ const HomeScreen = () => {
       </div>
   
     </div>
+    </>
   );
 };
 

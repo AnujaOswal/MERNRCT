@@ -1,46 +1,19 @@
-import React from 'react';
-import { useEffect, useState } from "react";
+import React,{ useState } from 'react';
 import './App.css';
-import HomeScreen from './HomeScreen.js'
-import Header from './Header.js'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"; 
-import RecipeComponent from './RecipeComponent.js'
-import Form from './Form.js'
-import { Register } from './AuthPages/RegisterScreen/Register';
-import { Login } from './AuthPages/loginScreen/Login';
+import { BrowserRouter as Router, Route } from "react-router-dom"; 
+import Routes from './routes/Routes.js'
+import AuthApi from './utils/AuthApi'
 
 function App() {
 
-  
-
+const [auth, setAuth] = useState(false);
   return (
     <div className="App">
-      <>
-      
-      
+      <AuthApi.Provider value={{ auth, setAuth }}>
           <Router>
-            
-          <Header/>
-            <>      
-          
-
-            {/*add recipe page */}
-            <Route exact path="/" component={HomeScreen}/>
-            <Route path="/recipe" component={RecipeComponent}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/addRecipe" component={Form}/>
-            
-     
-
-            {/* <Route exact path="/">
-            <HomeScreen/>
-            </Route> */}
-            </> 
-          
+            <Routes/>         
           </Router>
-   
-      </>
+       </AuthApi.Provider>  
     </div>
   );
 }

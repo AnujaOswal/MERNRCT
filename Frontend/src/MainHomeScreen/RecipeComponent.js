@@ -1,10 +1,15 @@
 import React from 'react'
+import { Grid } from '@material-ui/core';
 import RecipeCard from './RecipeCard.js';
 import  { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddRecipeComponent from './AddRecipeComponent.js'
-import {Searchbox} from './Searchbox.js'
+import { Searchbox } from './Searchbox.js'
 import axios from "axios"
+
+
+
+
 function RecipeComponent(){
   // const [searchRecipe, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -33,7 +38,8 @@ const setdeletetitle = async (_id) => {
   <>  
       <Searchbox setSearchfood={setSearchfood} />
     
-      <div className="row">
+      <Grid container spacing={2}>
+
       {recipes
          .filter((rec)=>{
            if(searchfood==="")
@@ -59,6 +65,7 @@ const setdeletetitle = async (_id) => {
         
         //console.log(elem.id)
          return(
+
           <RecipeCard  id = {elem.id} _id={elem._id} title={elem.title} image={elem.foodimage}  ingredients ={elem.ingredients} deletekey={setdeletetitle}/>
 
           
@@ -66,7 +73,8 @@ const setdeletetitle = async (_id) => {
 
         
             })}
-        </div>
+            
+       </Grid>
         <Link to={`/addRecipe`}>
           <AddRecipeComponent />
         </Link>
