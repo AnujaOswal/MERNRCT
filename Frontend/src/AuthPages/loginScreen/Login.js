@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,12 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AuthApi from '../../utils/AuthApi';
+import {signin} from '../auth-api'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" to="https://material-ui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -48,10 +49,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  const [email, setEmail] = useState(); //store email & psd -usestate
+  const [password, setPassword] = useState();
   const authApi = useContext(AuthApi);
   const classes = useStyles();
-  const handleSignin = () => {
-    authApi.setAuth(true);
+
+  //check if current input = email registered
+  const handleOnChange = (e) =>{
+    if(e.target.name === 'email'){
+      setEmail(e.target.value);
+    }else{
+      setPassword(e.target.value);
+    }
+  }
+
+  const handleSignin = async(e) => {
+    e.preventDefault(); //to prevent refreshing again
+    const res = await signin({email,password})
+    console.log(res);
+    if(res.data.auth)
+    {
+      authApi.setAuth(true); //to go to dashboard
+    }
+    //authApi.setAuth(true);
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -74,6 +94,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleOnChange} //onchange
           />
           <TextField
             variant="outlined"
@@ -85,6 +106,8 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleOnChange} //omchange
+
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

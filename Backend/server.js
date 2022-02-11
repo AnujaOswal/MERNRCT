@@ -4,6 +4,7 @@ import router from "./routes/recipe.js";
 import { userRouter } from "./routes/user.js";
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+import session from "express-session"
 
 dotenv.config();
 
@@ -20,7 +21,13 @@ app.use(express.json())
 
 app.use("/users", userRouter);
 app.use("/recipes", router);
-
+app.use(
+  session({
+    secret: 'this is not secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  }))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('Frontend/build'))

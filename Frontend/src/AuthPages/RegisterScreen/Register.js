@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,12 +13,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { signup } from '../auth-api';
+import AuthApi from '../../utils/AuthApi';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -29,10 +32,29 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const authApi = useContext(AuthApi); //api context
+
+  const handleOnChange = (e) =>{
+    if(e.target.name === 'email'){
+      setEmail(e.target.value);
+    }else{
+      setPassword(e.target.value);
+    }
+  }
+
+  const handleSignup = async (e) =>{
+    e.preventDefault()
+    const result = await signup({email, password});
+    if(result.data.auth){  //if it is true then authApi set as true as directly dashboard
+      authApi.setAuth(true);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
     console.log({
       email: data.get('email'),
       password: data.get('password'),
@@ -57,7 +79,7 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit}  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -88,6 +110,7 @@ export default function Register() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,6 +122,7 @@ export default function Register() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -113,6 +137,7 @@ export default function Register() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+             onClick={handleSignup}
             >
               Sign Up
             </Button>
